@@ -2,14 +2,13 @@
 # Conditional build:
 %bcond_with	tests		# build without tests
 
-%define	pkgname	knife-server
 Summary:	Chef Knife plugin to bootstrap Chef Servers
-Name:		ruby-%{pkgname}
+Name:		knife-server
 Version:	1.1.0
-Release:	0.4
+Release:	0.5
 License:	GPL v2+ or Ruby
 Group:		Development/Languages
-Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
+Source0:	http://rubygems.org/downloads/%{name}-%{version}.gem
 # Source0-md5:	-
 URL:		http://fnichol.github.com/knife-server
 BuildRequires:	rpm-rubyprov
@@ -24,7 +23,7 @@ BuildRequires:	ruby-rspec >= 2.13.0
 BuildRequires:	ruby-timecop < 1
 BuildRequires:	ruby-timecop >= 0.3
 %endif
-Requires:	chef >= 0.10.10
+Requires:	knife >= 0.10.10
 #Requires:	ruby-fog < 2
 #Requires:	ruby-fog >= 1.3
 Requires:	ruby-net-ssh
@@ -35,7 +34,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Chef Knife plugin to bootstrap Chef Servers.
 
 %prep
-%setup -q -n %{pkgname}-%{version}
+%setup -q
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -47,7 +46,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{ruby_vendorlibdir}/%{pkgname}.rb
+%{ruby_vendorlibdir}/%{name}.rb
 
 %{ruby_vendorlibdir}/chef/knife/bootstrap/_common.sh
 %{ruby_vendorlibdir}/chef/knife/bootstrap/_omnibus.sh
